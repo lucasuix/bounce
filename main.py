@@ -24,6 +24,8 @@ bkg = pygame.image.load('assets/bkg.png')
 bkg_rect = bkg.get_rect(topleft = (0,0))
 
 time = 0
+dx = 0
+dy = 0
 
 
 while True:
@@ -44,9 +46,15 @@ while True:
 					pygame.quit()
 					exit()
 			
+			temp_x = mouse_pos[0]
+			temp_y = mouse_pos[1]
+			
 			mouse_press = pygame.mouse.get_pressed(num_buttons = 3)
 			mouse_pos = pygame.mouse.get_pos()
 
+			dx = (mouse_pos[0] - temp_x)*0.1
+			dy = (mouse_pos[1] - temp_y)*0.1
+			
 			ball_rect.x = mouse_pos[0]
 			ball_rect.y = mouse_pos[1]
 			time = 0
@@ -70,10 +78,13 @@ while True:
 		time = 0
 	else:
 		time = time + 0.1
-		ball_rect.y = ball_rect.y + 4.6*(time**2)
+		ball_rect.y = ball_rect.y + dy*time + 4.9*(time**2)
+		ball_rect.x = ball_rect.x + dx*time
 		
 		# O valor tem que ser 491 para ela colidir com o ground
 		if ball_rect.y >= 491: ball_rect.y = 491
+		if ball_rect.x >= 740: ball_rect.x = 0
+		if ball_rect.x < 0: ball_rect.x = 740
 	
 	# Render
 	screen.blit(bkg, bkg_rect)
