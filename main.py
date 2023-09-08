@@ -47,6 +47,13 @@ while True:
 			ball_rect.x = mouse_pos[0]
 			ball_rect.y = mouse_pos[1]
 			
+			# Colisão da bola com o chão
+			if ball_rect.colliderect(ground_rect) == 1:
+				ball_rect.y = 490
+			# Colisão da bola com a parede à direita
+			if ball_rect.x > 740:
+				ball_rect.x = 740
+			
 			screen.blit(bkg, bkg_rect)
 			screen.blit(ball, ball_rect)
 			screen.blit(ground, ground_rect)
