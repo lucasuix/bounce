@@ -23,6 +23,9 @@ ground_rect = ground.get_rect(center = (400, 600))
 bkg = pygame.image.load('assets/bkg.png')
 bkg_rect = bkg.get_rect(topleft = (0,0))
 
+time = 0
+
+
 while True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -60,7 +63,13 @@ while True:
 			
 			pygame.display.update()
 			clock.tick(30)
-			
+	
+	# Física
+	if ball_rect.colliderect(ground_rect) == 1:
+		time = 0
+	else:
+		time = time + 0.1
+		ball_rect.y = ball_rect.y + 2*(time**2)
 	
 	# Render
 	screen.blit(bkg, bkg_rect)
