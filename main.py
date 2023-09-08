@@ -69,7 +69,9 @@ while True:
 		time = 0
 	else:
 		time = time + 0.1
-		ball_rect.y = ball_rect.y + 2*(time**2)
+		ball_rect.y = ball_rect.y + 4.6*(time**2)
+		
+		if ball_rect.y >= 491: ball_rect.y = 491
 	
 	# Render
 	screen.blit(bkg, bkg_rect)
