@@ -1,5 +1,5 @@
 import pygame
-
+import math as m
 from sys import exit
 
 
@@ -23,10 +23,16 @@ ground_rect = ground.get_rect(center = (400, 600))
 bkg = pygame.image.load('assets/bkg.png')
 bkg_rect = bkg.get_rect(topleft = (0,0))
 
+'''
+vy_arrow = pygame.image.load('assets/vy_arrow.png')
+vx_arrow = pygame.image.load('assets/vx_arrow.png')
+vy_arrow_rect = vy_arrow.get_rect(midleft = (100, 100))
+vx_arrow_rect = vx_arrow.get_rect(midleft = (100, 100))
+'''
+
 time = 0
 dx = 0
 dy = 0
-
 
 while True:
 	for event in pygame.event.get():
@@ -52,8 +58,9 @@ while True:
 			mouse_press = pygame.mouse.get_pressed(num_buttons = 3)
 			mouse_pos = pygame.mouse.get_pos()
 
-			dx = (mouse_pos[0] - temp_x)*0.1
-			dy = (mouse_pos[1] - temp_y)*0.1
+			dx = (mouse_pos[0] - temp_x)*0.2
+			dy = (mouse_pos[1] - temp_y)*0.2
+
 			
 			ball_rect.x = mouse_pos[0]
 			ball_rect.y = mouse_pos[1]
@@ -83,12 +90,14 @@ while True:
 		
 		# O valor tem que ser 491 para ela colidir com o ground
 		if ball_rect.y >= 491: ball_rect.y = 491
-		if ball_rect.x >= 740: ball_rect.x = 0
+		if ball_rect.x > 740: ball_rect.x = 0
 		if ball_rect.x < 0: ball_rect.x = 740
 	
 	# Render
 	screen.blit(bkg, bkg_rect)
 	screen.blit(ball, ball_rect)
+	# screen.blit(vy_arrow, vy_arrow_rect)
+	# screen.blit(vx_arrow, vx_arrow_rect)
 	screen.blit(ground, ground_rect)
 	
 	pygame.display.update()
