@@ -20,6 +20,8 @@ ball_rect = ball.get_rect(center = (100, 100))
 ground = pygame.image.load('assets/ground.png')
 ground_rect = ground.get_rect(center = (400, 600))
 
+bkg = pygame.image.load('assets/bkg.png')
+bkg_rect = bkg.get_rect(topleft = (0,0))
 
 while True:
 	for event in pygame.event.get():
@@ -44,13 +46,17 @@ while True:
 
 			ball_rect.x = mouse_pos[0]
 			ball_rect.y = mouse_pos[1]
+			
+			screen.blit(bkg, bkg_rect)
 			screen.blit(ball, ball_rect)
+			screen.blit(ground, ground_rect)
 			
 			pygame.display.update()
 			clock.tick(30)
 			
 	
 	# Render
+	screen.blit(bkg, bkg_rect)
 	screen.blit(ball, ball_rect)
 	screen.blit(ground, ground_rect)
 	
