@@ -49,6 +49,7 @@ while True:
 
 			ball_rect.x = mouse_pos[0]
 			ball_rect.y = mouse_pos[1]
+			time = 0
 			
 			# Colisão da bola com o chão
 			if ball_rect.colliderect(ground_rect) == 1:
@@ -71,6 +72,7 @@ while True:
 		time = time + 0.1
 		ball_rect.y = ball_rect.y + 4.6*(time**2)
 		
+		# O valor tem que ser 491 para ela colidir com o ground
 		if ball_rect.y >= 491: ball_rect.y = 491
 	
 	# Render
